@@ -133,6 +133,15 @@ describe('api', function () {
             });
             assert.equal(template({who: 'world'}), '<div>hello world</div>');
         });
+        it('with params', function () {
+            var template = jt(function (who, action) {
+                return {
+                    tag: 'div',
+                    content: [action, ' ', who]
+                }
+            });
+            assert.equal(template('world', 'hello'), '<div>hello world</div>');
+        })
     })
 
     describe('examples', function () {
