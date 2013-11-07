@@ -1,0 +1,17 @@
+{
+    "name": "t",
+    "version": "0.0.1",
+    "author": {
+        "name": "Evgeniy Filatov"
+    },
+    "scripts": {
+        "test": "npm install --develop && ./node_modules/.bin/mocha index.test.js"
+    },
+    "devDependencies": {
+        "mocha": "*"
+    },
+    "main": "index",
+    "engines": {
+        "node": "*"
+    }
+}
