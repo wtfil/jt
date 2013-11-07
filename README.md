@@ -1,5 +1,4 @@
-
-    Super easy template engine. Write templates in JSON!
+Super easy template engine. Write templates in JSON!
 
 ```js
 var jt = require('jt');
@@ -17,13 +16,14 @@ Install
 
     npm install jt
 
-```jt``` return function(template) that can be callen in future
+You can use ```jt``` as CommonJS or AMD module.
 
 
 API
 ==============
+```jt``` return function (template) that can be callen in future.
 
-You can create template from string, array, json and functions
+You can create template from string, array, json and functions:
 
 
 ```js
@@ -72,4 +72,13 @@ var template = jt(function (who, action) {
 });
 
 template('world', 'hello'); // '<span class="text">hello world</span>'
+```
+
+If You dont want to create template for one call, You just can get template as string (not function):
+
+```js
+js.compile({
+    tag: 'img',
+    src: '/some.png'
+}); // '<img src="/some.png"/>'
 ```
