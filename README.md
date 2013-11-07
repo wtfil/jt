@@ -1,4 +1,4 @@
-Super easy template engine. Write templates in JSON!
+Super easy template engine. Write templates in json!
 
 ```js
 var jt = require('jt');
@@ -21,7 +21,7 @@ You can use ```jt``` as CommonJS or AMD module.
 
 API
 ==============
-```jt``` return function (template) that can be callen in future.
+```jt``` returns function (template) that can be callen in future.
 
 You can create template from string, array, json and functions:
 
