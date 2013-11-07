@@ -55,16 +55,13 @@
     }
 
     function template(tree) {
-        var args = arguments,
-            st;
-
         if (typeof tree === 'function') {
-            return function (params) {
+            return function () {
                 return compile(tree.apply(null, arguments));
             }
         }
 
-        st = compile(tree);
+        var st = compile(tree);
         return function () {
             return st;
         }
