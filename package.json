@@ -1,6 +1,14 @@
 {
-    "name": "t",
-    "version": "0.0.1",
+    "name": "jt",
+    "version": "0.0.2",
+    "description": "JSON templates",
+    "keywords" : [
+        "jt",
+        "JSON",
+        "templates",
+        "lib"
+    ],
+    "repository": "git://github.com/wtfil/jt",
     "author": {
         "name": "Evgeniy Filatov"
     },

@@ -6,7 +6,7 @@
     } else if (typeof define === 'function' && define.amd) {
         define(template);
     } else {
-        global.template = template;
+        global.jt = template;
     }
 
     // http://www.w3.org/TR/html-markup/syntax.html#void-element
@@ -55,12 +55,16 @@
     }
 
     function template(tree) {
+        var args = arguments,
+            st;
+
         if (typeof tree === 'function') {
             return function (params) {
-                return compile(tree(params));
+                return compile(tree.apply(null, arguments));
             }
         }
-        var st = compile(tree);
+
+        st = compile(tree);
         return function () {
             return st;
         }

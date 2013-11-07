@@ -1,29 +1,29 @@
 /*global describe, it*/
-var t = require('./'),
+var jt = require('./'),
     assert = require('assert');
 
 describe('interface', function () {
 
     describe('param', function () {
         it('String', function () {
-            t('hi');
+            jt('hi');
         });
 
         it('Function', function () {
-            t(function () {});
+            jt(function () {});
         });
 
         it('Array', function () {
-            t([]);
+            jt([]);
         });
 
         it('json', function () {
-            t({});
+            jt({});
         });
     });
 
     it('result', function () {
-        var template = t([]);
+        var template = jt([]);
         assert.equal(typeof template, 'function');
     });
 
@@ -31,24 +31,24 @@ describe('interface', function () {
 
 describe('api', function () {
     it('String', function () {
-        var template = t('hello');
+        var template = jt('hello');
         assert.equal(template(), 'hello');
     }); 
 
     it('Array', function () {
-        var template = t(['hello', ' world']);
+        var template = jt(['hello', ' world']);
         assert.equal(template(), 'hello world');
     });
 
     describe('json', function () {
         it('content', function () {
-            var template = t({
+            var template = jt({
                 content: 'hello world'
             });
             assert.equal(template(), '<div>hello world</div>');
         });
         it('tag', function () {
-            var template = t({
+            var template = jt({
                 content: 'hello world',
                 tag: 'span'
             });
@@ -56,7 +56,7 @@ describe('api', function () {
         });
         describe('args', function () {
             it('single', function () {
-                var template = t({
+                var template = jt({
                     content: 'hello world',
                     data: 'foo'
                 });
@@ -64,7 +64,7 @@ describe('api', function () {
             });
 
             it('multiple', function () {
-                var template = t({
+                var template = jt({
                     content: 'hello world',
                     foo: 'bar',
                     data: 'baz'
@@ -74,7 +74,7 @@ describe('api', function () {
         });
         describe('class', function () {
             it('string', function () {
-                var template = t({
+                var template = jt({
                     content: 'hello world',
                     cls: 'foo'
                 });
@@ -82,7 +82,7 @@ describe('api', function () {
             });
 
             it('array', function () {
-                var template = t({
+                var template = jt({
                     content: 'hello world',
                     cls: ['foo', 'bar']
                 });
@@ -93,20 +93,20 @@ describe('api', function () {
 
     describe('short tags', function () {
         it('simple', function () {
-            var template = t({
+            var template = jt({
                 tag: 'br'
             });
             assert.equal(template(), '<br/>');
         });
         it('with content', function () {
-            var template = t({
+            var template = jt({
                 tag: 'br',
                 content: 'hello world'
             });
             assert.equal(template(), '<br/>');
         });
         it('attrs', function () {
-            var template = t({
+            var template = jt({
                 tag: 'br',
                 foo: 'bar'
             });
@@ -116,19 +116,19 @@ describe('api', function () {
 
     describe('Function', function () {
         it('string', function () {
-            var template = t(function () {
+            var template = jt(function () {
                 return 'hello world';
             });
             assert.equal(template(), 'hello world');
         });
         it('json', function () {
-            var template = t(function () {
+            var template = jt(function () {
                 return {content: 'foo'}
             });
             assert.equal(template(), '<div>foo</div>');
         });
         it('with params', function () {
-            var template = t(function (params) {
+            var template = jt(function (params) {
                 return {content: 'hello ' + params.who}
             });
             assert.equal(template({who: 'world'}), '<div>hello world</div>');
@@ -137,7 +137,7 @@ describe('api', function () {
 
     describe('examples', function () {
         it('1', function () {
-            var st = t.compile({
+            var st = jt.compile({
                 tag: 'span',
                 content: [
                     {tag: 'li', content: 'hello'},
@@ -148,4 +148,3 @@ describe('api', function () {
         });
     })
 });
-
