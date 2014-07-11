@@ -58,12 +58,12 @@
         if (typeof tree === 'function') {
             return function () {
                 return compile(tree.apply(null, arguments));
-            }
+            };
         }
 
         var st = compile(tree);
         return function () {
             return st;
-        }
+        };
     }
 }(this));

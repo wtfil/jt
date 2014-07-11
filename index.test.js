@@ -88,7 +88,7 @@ describe('api', function () {
                 });
                 assert.equal(template(), '<div class="foo bar">hello world</div>');
             });
-        })
+        });
     });
 
     describe('short tags', function () {
@@ -123,13 +123,13 @@ describe('api', function () {
         });
         it('json', function () {
             var template = jt(function () {
-                return {content: 'foo'}
+                return {content: 'foo'};
             });
             assert.equal(template(), '<div>foo</div>');
         });
         it('with params', function () {
             var template = jt(function (params) {
-                return {content: 'hello ' + params.who}
+                return {content: 'hello ' + params.who};
             });
             assert.equal(template({who: 'world'}), '<div>hello world</div>');
         });
@@ -138,11 +138,39 @@ describe('api', function () {
                 return {
                     tag: 'div',
                     content: [action, ' ', who]
-                }
+                };
             });
             assert.equal(template('world', 'hello'), '<div>hello world</div>');
-        })
-    })
+        });
+
+        it('es5', function () {
+			var template = jt(function (items) {
+				return {
+					tag: 'ul',
+					class: 'list',
+					content: items.map(function (item) {
+						return {
+							tag: 'li',
+							class: 'item',
+							content: {
+								tag: 'a',
+								href: item.url,
+								content: item.text
+							}
+						};
+					})
+				};
+			});
+
+        	var items = [
+        		{url: '/foo', text: 'get foo'},
+        		{url: '/bar', text: 'get bar'}
+        	];
+
+        	var html = '<ul class="list"><li class="item"><a href="/foo">get foo</a></li><li class="item"><a href="/bar">get bar</a></li></ul>';
+        	assert.equal(template(items), html);
+        });
+    });
 
     describe('examples', function () {
         it('1', function () {
@@ -155,5 +183,5 @@ describe('api', function () {
             });
             assert.equal(st, '<span><li>hello</li><span>olo<div>olo</div></span></span>');
         });
-    })
+    });
 });

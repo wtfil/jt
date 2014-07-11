@@ -63,6 +63,40 @@ template('world'); // '<span class="text">hello world</span>'
 ```
 
 ```js
+var template = jt(function (items) {
+	return {
+		tag: 'ul',
+		class: 'list',
+		content: items.map(function (item) {
+			return {
+				tag: 'li',
+				class: 'item',
+				content: {
+					tag: 'a',
+					href: item.url,
+					content: item.text
+				}
+			};
+		})
+	};
+});
+
+var items = [
+    {url: '/foo', text: 'get foo'},
+    {url: '/bar', text: 'get bar'}
+];
+
+template(items)
+```
+result:
+```html
+<ul class="list">
+	<li class="item"><a href="/foo">get foo</a></li>
+	<li class="item"><a href="/bar">get bar</a></li>
+</ul>
+```
+
+```js
 var template = jt(function (who, action) {
     return {
         tag: 'div',
